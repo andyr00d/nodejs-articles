@@ -4,12 +4,12 @@ require('dotenv').config()
 const mongoose = require("mongoose");
 
 const app = express();
-const url = process.env.MONGODB;
+//const url = process.env.MONGODB;
 
 //mongoose.Promise = global.Promise;
 //mongoose.connect(encodeURI(url));
 
-var uristring = 'mongodb://dbuser:k0r0k0r0@ds163013.mlab.com:63013/articles';
+var uristring = process.env.MONGODB2;
 
 // The http server will listen to an appropriate port, or default to
 // port 5000.
