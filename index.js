@@ -9,7 +9,7 @@ const app = express();
 //mongoose.Promise = global.Promise;
 //mongoose.connect(encodeURI(url));
 
-var uristring = process.env.MONGODB2;
+var uristring = 'mongodb://dbuser:korokoro@150.101.171.154:37011/learning-node';
 
 // The http server will listen to an appropriate port, or default to
 // port 5000.
