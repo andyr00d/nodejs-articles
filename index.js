@@ -6,8 +6,24 @@ const mongoose = require("mongoose");
 const app = express();
 const url = process.env.MONGODB;
 
-mongoose.Promise = global.Promise;
-mongoose.connect(url);
+//mongoose.Promise = global.Promise;
+//mongoose.connect(encodeURI(url));
+
+var uristring = 'mongodb://dbuser:k0r0k0r0@ds163013.mlab.com:63013/articles';
+
+// The http server will listen to an appropriate port, or default to
+// port 5000.
+//var theport = process.env.PORT || 5000;
+
+// Makes connection asynchronously.  Mongoose will queue up database
+// operations and release them when the connection is complete.
+mongoose.connect(uristring, function (err, res) {
+  if (err) {
+  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+  console.log ('Succeeded connected to: ' + uristring);
+  }
+});
 
 const articleSchema = new mongoose.Schema({
   title: String,
@@ -19,7 +35,7 @@ const Article = mongoose.model("Article", articleSchema);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('port', (process.env.PORT2 || 5000));
+app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
